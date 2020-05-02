@@ -1,4 +1,4 @@
-Docker Project on drupal:-
+Docker Project on drupal :-
 
 I completed a project using DOCKER technology to set up a web app called drupal.For this i create a .yml file using docker-compose by which any body can run this file in their machine and launch drupal using just a single command
 
