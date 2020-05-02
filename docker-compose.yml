@@ -1,32 +1,36 @@
 version: '3'
+
+
 services:
-   myOS:
-       image: mysql:5.7
-       volumes:
-            - mysql_st:var/lib/mysql
-       restart: always
-       enviroment: 
+    myOS:
+        image: mysql:5.7
+        volumes:
+            - mysql_st:/var/lib/mysql      
+        restart: always
+        environment:
             MYSQL_ROOT_PASSWORD: rootps
             MYSQL_USER: hirendra
-   	    MYSQL_PASSWORD: redhat
-	    MYSQL_DATABASE: mydb
-     
-   drupalOS:
-       image: drupal:latest
-       volumes:
-            - drupal_st:var/www/html
-       restart: always
-       depends_on:
+            MYSQL_PASSWORD: redhat
+            MYSQL_DATABASE: mydb
+
+
+    drupalOS:
+        image: drupal:latest
+        volumes:
+            - drupal_st:/var/www/html
+        restart: always
+        depends_on:
             - myOS
-       ports:
+        ports:
             - 1234:80
-       environment: 
+        environment:
             DRUPAL_DB_HOST: myOS:3306
             DRUPAL_DB_USER: hirendra
-    	    DRUPAL_DB_PASSWORD: redhat
-	    DRUPAL_DB_NAME: mydb
+            DRUPAL_DB_PASSWORD: redhat
+            DRUPAL_DB_NAME: mydb
+        
 
 volumes:
       mysql_st:
-      drupal_st:	
-    	
+      drupal_st: 
+   
